@@ -1,10 +1,55 @@
 import Foundation
 
 
+class Human {
+    var name = ""
+    lazy var getName: () -> String? = { [weak self] in
+        return self?.name
+    }
+    
+    init(name: String) {
+        self.name = name
+    }
+ 
+    deinit {
+        print("Human Deinit!")
+    }
+}
+
+struct NotHuman {
+    var name: String = "notRobo"
+    
+    func printName() -> String {
+        return self.name
+    }
+    
+    init() {
+        self.name = "robo"
+    }
+}
+
+var robot = NotHuman()
+robot.printName()
+
+var sodeul: Human? = .init(name: "Kim-Sodeul")
+print(sodeul!.getName() as Any)
+sodeul = nil
+
+
 let str22: String = ""
 let val = type(of: str22)
 print(val)
 
+func meth(of nums: [Int]) -> [Int] {
+    return nums
+}
+
+func meth2(of nums: Int...) -> [Int] {
+    return nums
+}
+
+let numbers = [1, 2, 3, 4, 5]
+meth(of: numbers)
 
 var arr = "123456789.0000"
 var idxDot = arr.firstIndex(of: ".")!
